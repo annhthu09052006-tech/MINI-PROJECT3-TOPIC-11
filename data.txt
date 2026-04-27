@@ -1,2 +1,8 @@
-4|toyota|200.0
-6 |honda|500.0
+1|toyota|3|300.0|Rented
+2|honda|2|500.0|Available
+toyota|honda|6|600.0|Rented
+5|toyota|7|800.0|Rented
+23|toyota|7|600.0|Rented
+6|honda|6|800.0|Available
+3|toyota|4|600.0|Rented
+9|hoda|6|800.0|Available
