@@ -1,5 +1,19 @@
 [
     {
+        "id": "45",
+        "name": "toyota",
+        "type": "car",
+        "price": 70.0,
+        "status": "Available"
+    },
+    {
+        "id": "90",
+        "name": "honda",
+        "type": "bike",
+        "price": 100.0,
+        "status": "Rented"
+    },
+    {
         "id": "1",
         "name": "toyota",
         "type": "3",

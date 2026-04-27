@@ -6,3 +6,5 @@ toyota|honda|6|600.0|Rented
 6|honda|6|800.0|Available
 3|toyota|4|600.0|Rented
 9|hoda|6|800.0|Available
+45|toyota|car|70.0|Available
+90|honda|bike|100.0|Rented
