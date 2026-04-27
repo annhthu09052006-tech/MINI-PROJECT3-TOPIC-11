@@ -1,16 +1,48 @@
 import json
 import os
 
-DATA_FILE = "data.txt"
+TXT_FILE = "data.txt"
 JSON_FILE = "data.json"
 
 
-def load_data():
+# ================= SYSTEM =================
+def clear_screen():
+    os.system("cls" if os.name == "nt" else "clear")
+
+
+def display_menu():
+    clear_screen()
+    print("\n" + "=" * 60)
+    print("        🚗 VEHICLE MANAGEMENT SYSTEM 🚗")
+    print("=" * 60)
+    print("1. Add new vehicle")
+    print("2. Display all vehicles")
+    print("3. Search vehicle by name")
+    print("4. Sort vehicles by price")
+    print("5. Show statistics")
+    print("6. Save to TXT file")
+    print("7. Load from TXT file")
+    print("8. Advanced search")
+    print("9. Export to JSON")
+    print("0. Exit")
+    print("=" * 60)
+
+
+# ================= FILE =================
+def save_to_txt(vehicles):
+    with open(TXT_FILE, "w") as f:
+        for v in vehicles:
+            f.write(f"{v['id']}|{v['name']}|{v['type']}|{v['price']}|{v['status']}\n")
+    print("Saved to TXT!")
+
+
+def load_from_txt():
     vehicles = []
-    if not os.path.exists(DATA_FILE):
+    if not os.path.exists(TXT_FILE):
+        print("No file found!")
         return vehicles
 
-    with open(DATA_FILE, "r") as f:
+    with open(TXT_FILE, "r") as f:
         for line in f:
             parts = line.strip().split("|")
             if len(parts) == 5:
@@ -21,13 +53,8 @@ def load_data():
                     "price": float(parts[3]),
                     "status": parts[4]
                 })
+    print("Loaded from TXT!")
     return vehicles
-
-
-def save_data(vehicles):
-    with open(DATA_FILE, "w") as f:
-        for v in vehicles:
-            f.write(f"{v['id']}|{v['name']}|{v['type']}|{v['price']}|{v['status']}\n")
 
 
 def export_json(vehicles):
@@ -36,49 +63,25 @@ def export_json(vehicles):
     print("Exported JSON!")
 
 
-# ===== ADD IMPROVED =====
+# ================= CORE =================
 def add_vehicle(vehicles):
     vid = input("Enter ID: ").strip()
 
-    # ❌ check empty
-    if vid == "":
-        print("ID cannot be empty!")
-        return
-
-    # ❌ check duplicate
     for v in vehicles:
         if v["id"] == vid:
             print("ID already exists!")
             return
 
-    name = input("Enter name: ").strip()
-    if name == "":
-        print("Name cannot be empty!")
-        return
+    name = input("Enter name: ")
+    vtype = input("Enter type: ")
 
-    vtype = input("Enter type: ").strip()
-    if vtype == "":
-        print("Type cannot be empty!")
-        return
-
-    # price validate
     try:
         price = float(input("Enter price: "))
-        if price < 0:
-            print("Price must be >= 0!")
-            return
     except:
         print("Invalid price!")
         return
 
-    # status chuẩn hóa
-    status = input("Enter status (Available/Rented): ").strip().lower()
-
-    if status not in ["available", "rented"]:
-        print("Status must be Available or Rented!")
-        return
-
-    status = status.capitalize()
+    status = input("Enter status (Available/Rented): ")
 
     vehicles.append({
         "id": vid,
@@ -88,8 +91,7 @@ def add_vehicle(vehicles):
         "status": status
     })
 
-    save_data(vehicles)
-    print("Added successfully!")
+    print("Added!")
 
 
 def display_vehicles(vehicles):
@@ -104,43 +106,38 @@ def display_vehicles(vehicles):
         print(f"{v['id']:<10}{v['name']:<20}{v['type']:<15}{v['price']:<10}{v['status']:<10}")
 
 
+# ================= SEARCH =================
 def search_vehicle(vehicles):
-    keyword = input("Enter keyword: ").lower()
-
-    result = []
-    for v in vehicles:
-        if (keyword in v["id"].lower()
-                or keyword in v["name"].lower()
-                or keyword in v["type"].lower()):
-            result.append(v)
-
+    keyword = input("Enter name: ").lower()
+    result = [v for v in vehicles if keyword in v["name"].lower()]
     display_vehicles(result)
 
+
+# ================= SORT (FIX CHUẨN) =================
 def sort_vehicles(vehicles):
     if not vehicles:
         print("No data!")
         return
 
-    print("\n--- SORT MENU ---")
     print("1. Ascending (Low → High)")
     print("2. Descending (High → Low)")
-    choice = input("Choose: ")
+    opt = input("Choose: ")
 
-    if choice == "1":
+    if opt == "1":
         vehicles.sort(key=lambda x: x["price"])
         print("Sorted ascending!")
-
-    elif choice == "2":
+    elif opt == "2":
         vehicles.sort(key=lambda x: x["price"], reverse=True)
         print("Sorted descending!")
-
     else:
         print("Invalid choice!")
         return
-    print("\n--- AFTER SORT ---")
+
+    # 👉 IN RA SAU KHI SORT (QUAN TRỌNG)
     display_vehicles(vehicles)
 
 
+# ================= STAT =================
 def statistics(vehicles):
     if not vehicles:
         print("No data!")
@@ -149,28 +146,26 @@ def statistics(vehicles):
     total = sum(v["price"] for v in vehicles)
     avg = total / len(vehicles)
 
-    available = sum(1 for v in vehicles if v["status"].lower() == "available")
-    rented = sum(1 for v in vehicles if v["status"].lower() == "rented")
-
-    print("Total:", len(vehicles))
-    print("Average:", round(avg, 2))
-    print("Available:", available)
-    print("Rented:", rented)
+    print("Total vehicles:", len(vehicles))
+    print("Average price:", round(avg, 2))
 
 
-def menu():
-    vehicles = load_data()
+# ================= ADVANCED =================
+def advanced_search(vehicles):
+    keyword = input("Keyword: ").lower()
+    result = [
+        v for v in vehicles
+        if keyword in v["name"].lower() or keyword in v["type"].lower()
+    ]
+    display_vehicles(result)
+
+
+# ================= MAIN =================
+def main():
+    vehicles = []
 
     while True:
-        print("\n===== VEHICLE MANAGEMENT =====")
-        print("1. Add vehicle")
-        print("2. Display vehicles")
-        print("3. Search vehicle")
-        print("4. Sort by price")
-        print("5. Statistics")
-        print("6. Export JSON")
-        print("0. Exit")
-
+        display_menu()
         choice = input("Choose: ")
 
         if choice == "1":
@@ -184,6 +179,12 @@ def menu():
         elif choice == "5":
             statistics(vehicles)
         elif choice == "6":
+            save_to_txt(vehicles)
+        elif choice == "7":
+            vehicles = load_from_txt()
+        elif choice == "8":
+            advanced_search(vehicles)
+        elif choice == "9":
             export_json(vehicles)
         elif choice == "0":
             print("Bye!")
@@ -191,6 +192,8 @@ def menu():
         else:
             print("Invalid!")
 
+        input("\nPress Enter to continue...")
+
 
 if __name__ == "__main__":
-    menu()
+    main()
