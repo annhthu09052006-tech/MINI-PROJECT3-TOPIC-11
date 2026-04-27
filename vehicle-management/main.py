@@ -116,10 +116,29 @@ def search_vehicle(vehicles):
 
     display_vehicles(result)
 
-
 def sort_vehicles(vehicles):
-    vehicles.sort(key=lambda x: x["price"])
-    print("Sorted by price!")
+    if not vehicles:
+        print("No data!")
+        return
+
+    print("\n--- SORT MENU ---")
+    print("1. Ascending (Low → High)")
+    print("2. Descending (High → Low)")
+    choice = input("Choose: ")
+
+    if choice == "1":
+        vehicles.sort(key=lambda x: x["price"])
+        print("Sorted ascending!")
+
+    elif choice == "2":
+        vehicles.sort(key=lambda x: x["price"], reverse=True)
+        print("Sorted descending!")
+
+    else:
+        print("Invalid choice!")
+        return
+    print("\n--- AFTER SORT ---")
+    display_vehicles(vehicles)
 
 
 def statistics(vehicles):
