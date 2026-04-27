@@ -1,8 +1,8 @@
 import json
 import os
 
-DATA_TXT = "vehicle-management/data.txt"
-DATA_JSON = "vehicle-management/data.json"
+DATA_TXT = "data.txt"
+DATA_JSON = "data.json"
 
 # ================= LOAD =================
 def load_from_txt():
