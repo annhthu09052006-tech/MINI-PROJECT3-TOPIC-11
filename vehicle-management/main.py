@@ -60,16 +60,35 @@ def display_vehicles(vehicles):
         print("No data!")
         return
 
+    print(f"{'ID':<10}{'Name':<20}{'Type':<15}{'Price':<10}{'Status':<10}")
+    print("-" * 65)
+
     for v in vehicles:
-        print(v)
+        print(f"{v['id']:<10}{v['name']:<20}{v['type']:<15}{v['price']:<10}{v['status']:<10}")
 
 
+# ===== SEARCH BASIC + ADVANCED =====
+def search_vehicle(vehicles):
+    keyword = input("Enter keyword (ID/Name/Type): ").lower()
+
+    result = []
+    for v in vehicles:
+        if (keyword in v["id"].lower()
+                or keyword in v["name"].lower()
+                or keyword in v["type"].lower()):
+            result.append(v)
+
+    display_vehicles(result)
+
+
+# ===== MENU =====
 def menu():
     vehicles = load_data()
 
     while True:
         print("\n1. Add")
         print("2. Display")
+        print("3. Search (keyword)")
         print("0. Exit")
 
         choice = input("Choose: ")
@@ -78,6 +97,8 @@ def menu():
             add_vehicle(vehicles)
         elif choice == "2":
             display_vehicles(vehicles)
+        elif choice == "3":
+            search_vehicle(vehicles)
         elif choice == "0":
             break
         else:
