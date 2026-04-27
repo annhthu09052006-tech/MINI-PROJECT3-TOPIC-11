@@ -69,15 +69,33 @@ def display_vehicles(vehicles):
 
 def search_vehicle(vehicles):
     keyword = input("Enter keyword: ").lower()
-
     result = [v for v in vehicles if keyword in v["name"].lower()]
     display_vehicles(result)
 
 
-# ===== SORT =====
 def sort_vehicles(vehicles):
     vehicles.sort(key=lambda x: x["price"])
-    print("Sorted by price!")
+    print("Sorted!")
+
+
+# ===== STATISTICS =====
+def statistics(vehicles):
+    if not vehicles:
+        print("No data!")
+        return
+
+    total_price = sum(v["price"] for v in vehicles)
+    avg_price = total_price / len(vehicles)
+
+    available = sum(1 for v in vehicles if v["status"].lower() == "available")
+    rented = sum(1 for v in vehicles if v["status"].lower() == "rented")
+
+    print("\n===== STATISTICS =====")
+    print(f"Total vehicles : {len(vehicles)}")
+    print(f"Total price    : {total_price}")
+    print(f"Average price  : {avg_price:.2f}")
+    print(f"Available      : {available}")
+    print(f"Rented         : {rented}")
 
 
 def menu():
@@ -87,7 +105,8 @@ def menu():
         print("\n1. Add")
         print("2. Display")
         print("3. Search")
-        print("4. Sort by price")
+        print("4. Sort")
+        print("5. Statistics")
         print("0. Exit")
 
         choice = input("Choose: ")
@@ -100,6 +119,8 @@ def menu():
             search_vehicle(vehicles)
         elif choice == "4":
             sort_vehicles(vehicles)
+        elif choice == "5":
+            statistics(vehicles)
         elif choice == "0":
             break
         else:
