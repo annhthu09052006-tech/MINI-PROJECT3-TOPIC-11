@@ -30,6 +30,12 @@ def save_data(vehicles):
             f.write(f"{v['id']}|{v['name']}|{v['type']}|{v['price']}|{v['status']}\n")
 
 
+def export_json(vehicles):
+    with open(JSON_FILE, "w") as f:
+        json.dump(vehicles, f, indent=4)
+    print("Exported JSON successfully!")
+
+
 def add_vehicle(vehicles):
     vid = input("Enter ID: ")
     name = input("Enter name: ")
@@ -41,7 +47,7 @@ def add_vehicle(vehicles):
         print("Invalid price!")
         return
 
-    status = input("Enter status: ")
+    status = input("Enter status (Available/Rented): ")
 
     vehicles.append({
         "id": vid,
@@ -69,44 +75,50 @@ def display_vehicles(vehicles):
 
 def search_vehicle(vehicles):
     keyword = input("Enter keyword: ").lower()
-    result = [v for v in vehicles if keyword in v["name"].lower()]
+
+    result = []
+    for v in vehicles:
+        if (keyword in v["id"].lower()
+                or keyword in v["name"].lower()
+                or keyword in v["type"].lower()):
+            result.append(v)
+
     display_vehicles(result)
 
 
 def sort_vehicles(vehicles):
     vehicles.sort(key=lambda x: x["price"])
-    print("Sorted!")
+    print("Sorted by price!")
 
 
-# ===== STATISTICS =====
 def statistics(vehicles):
     if not vehicles:
         print("No data!")
         return
 
-    total_price = sum(v["price"] for v in vehicles)
-    avg_price = total_price / len(vehicles)
+    total = sum(v["price"] for v in vehicles)
+    avg = total / len(vehicles)
 
     available = sum(1 for v in vehicles if v["status"].lower() == "available")
     rented = sum(1 for v in vehicles if v["status"].lower() == "rented")
 
-    print("\n===== STATISTICS =====")
-    print(f"Total vehicles : {len(vehicles)}")
-    print(f"Total price    : {total_price}")
-    print(f"Average price  : {avg_price:.2f}")
-    print(f"Available      : {available}")
-    print(f"Rented         : {rented}")
+    print("Total:", len(vehicles))
+    print("Average price:", avg)
+    print("Available:", available)
+    print("Rented:", rented)
 
 
 def menu():
     vehicles = load_data()
 
     while True:
-        print("\n1. Add")
-        print("2. Display")
-        print("3. Search")
-        print("4. Sort")
+        print("\n===== VEHICLE MANAGEMENT =====")
+        print("1. Add vehicle")
+        print("2. Display vehicles")
+        print("3. Search vehicle")
+        print("4. Sort by price")
         print("5. Statistics")
+        print("6. Export JSON")
         print("0. Exit")
 
         choice = input("Choose: ")
@@ -121,11 +133,5 @@ def menu():
             sort_vehicles(vehicles)
         elif choice == "5":
             statistics(vehicles)
-        elif choice == "0":
-            break
-        else:
-            print("Invalid!")
-
-
-if __name__ == "__main__":
-    menu()
+        elif choice == "6":
+            export_json(vehicles)
