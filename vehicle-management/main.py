@@ -67,28 +67,27 @@ def display_vehicles(vehicles):
         print(f"{v['id']:<10}{v['name']:<20}{v['type']:<15}{v['price']:<10}{v['status']:<10}")
 
 
-# ===== SEARCH BASIC + ADVANCED =====
 def search_vehicle(vehicles):
-    keyword = input("Enter keyword (ID/Name/Type): ").lower()
+    keyword = input("Enter keyword: ").lower()
 
-    result = []
-    for v in vehicles:
-        if (keyword in v["id"].lower()
-                or keyword in v["name"].lower()
-                or keyword in v["type"].lower()):
-            result.append(v)
-
+    result = [v for v in vehicles if keyword in v["name"].lower()]
     display_vehicles(result)
 
 
-# ===== MENU =====
+# ===== SORT =====
+def sort_vehicles(vehicles):
+    vehicles.sort(key=lambda x: x["price"])
+    print("Sorted by price!")
+
+
 def menu():
     vehicles = load_data()
 
     while True:
         print("\n1. Add")
         print("2. Display")
-        print("3. Search (keyword)")
+        print("3. Search")
+        print("4. Sort by price")
         print("0. Exit")
 
         choice = input("Choose: ")
@@ -99,6 +98,8 @@ def menu():
             display_vehicles(vehicles)
         elif choice == "3":
             search_vehicle(vehicles)
+        elif choice == "4":
+            sort_vehicles(vehicles)
         elif choice == "0":
             break
         else:
