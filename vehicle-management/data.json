@@ -1,0 +1,17 @@
+[
+    {
+        "id": "123",
+        "name": "danwg",
+        "price": 2.0
+    },
+    {
+        "id": "1",
+        "name": "Toyota",
+        "price": 500.0
+    },
+    {
+        "id": "2",
+        "name": "Honda",
+        "price": 300.0
+    }
+]
