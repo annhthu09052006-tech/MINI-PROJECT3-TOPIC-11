@@ -135,3 +135,12 @@ def menu():
             statistics(vehicles)
         elif choice == "6":
             export_json(vehicles)
+        elif choice == "0":
+            print("Bye!")
+            break
+        else:
+            print("Invalid!")
+
+if __name__ == "__main__":
+    menu()
+    
