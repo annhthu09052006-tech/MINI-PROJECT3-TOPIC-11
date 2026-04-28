@@ -36,7 +36,7 @@ The system is built with the following objectives:
 - Export structured JSON data
 - Practice procedural programming
 
----
+
 
 ## 3. Data Structure
 
@@ -45,7 +45,7 @@ Each vehicle is stored as a dictionary:
 
 Stored in a list:
 vehicles = [ { "id": "V001", "name": "Toyota", "type": "Car", "price": 100, "status": "Available" } ]
----
+
 
 ## 4. Technologies Used
 
@@ -57,11 +57,11 @@ vehicles = [ { "id": "V001", "name": "Toyota", "type": "Car", "price": 100, "sta
 | Git & GitHub | Version control |
 | CLI | User interaction |
 
----
+
 
 ## 5. Project Structure
 vehicle-management/ |-- main.py |-- data.txt |-- data.json |-- README.md
----
+
 
 ## 6. Main Features
 
@@ -90,7 +90,7 @@ vehicle-management/ |-- main.py |-- data.txt |-- data.json |-- README.md
 ### 6.7 Export JSON
 - Export all data to `data.json`
 
----
+
 
 ## 7. Menu
 ============================================================
@@ -106,9 +106,7 @@ vehicle-management/ |-- main.py |-- data.txt |-- data.json |-- README.md
 8. Advanced search
 9. Export to JSON
 0. Exit
-============================================================
 Choose: 
----
 
 ## 8. Input Validation
 
@@ -118,7 +116,7 @@ Choose:
 | Price | Must be number |
 | Status | Available / Rented |
 
----
+
 
 ## 9. Functions
 
@@ -134,11 +132,11 @@ Choose:
 | statistics() | Calculate stats |
 | menu() | Main loop |
 
----
+
 
 ## 10. How to Run
 pyhon main.py
----
+
 
 ## 11. Advanced Features
 
@@ -148,7 +146,7 @@ pyhon main.py
 ### JSON Export
 - Export structured data
 
----
+
 
 ## 12. Self-Assessment
 
@@ -166,7 +164,6 @@ pyhon main.py
 | 10 | Git | 1.0 |
 | | TOTAL | 10.0 |
 
----
 
 ## 13. Student Information
 
