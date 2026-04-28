@@ -1,0 +1,16 @@
+[
+    {
+        "id": "11",
+        "name": "toyota",
+        "type": "car",
+        "price": 400.0,
+        "status": "available"
+    },
+    {
+        "id": "10",
+        "name": "honda",
+        "type": "car",
+        "price": 300.0,
+        "status": "rented"
+    }
+]
