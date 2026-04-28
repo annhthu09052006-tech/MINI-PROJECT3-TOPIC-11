@@ -113,7 +113,7 @@ def search_vehicle(vehicles):
     display_vehicles(result)
 
 
-# ================= SORT (FIX CHUẨN) =================
+# ================= SORT  =================
 def sort_vehicles(vehicles):
     if not vehicles:
         print("No data!")
