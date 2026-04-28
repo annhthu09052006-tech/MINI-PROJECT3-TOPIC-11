@@ -1,2 +1,9 @@
+<<<<<<< HEAD
+10|honda|car|300.0|rented
+11|toyota|car|400.0|available
+2|mazda3|car|400.0|avalable
+1|lexus|car|600.0|rented
+=======
 11|toyota|car|400.0|available
 10|honda|car|300.0|rented
+>>>>>>> 2948341153bd3ce378f2958e22e086af58eb6afb

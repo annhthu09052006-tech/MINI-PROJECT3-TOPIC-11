@@ -113,7 +113,11 @@ def search_vehicle(vehicles):
     display_vehicles(result)
 
 
+<<<<<<< HEAD
+# ================= SORT =================
+=======
 # ================= SORT (FIX CHUẨN) =================
+>>>>>>> 2948341153bd3ce378f2958e22e086af58eb6afb
 def sort_vehicles(vehicles):
     if not vehicles:
         print("No data!")
@@ -133,7 +137,10 @@ def sort_vehicles(vehicles):
         print("Invalid choice!")
         return
 
+<<<<<<< HEAD
+=======
     # 👉 IN RA SAU KHI SORT (QUAN TRỌNG)
+>>>>>>> 2948341153bd3ce378f2958e22e086af58eb6afb
     display_vehicles(vehicles)
 
 
@@ -196,5 +203,9 @@ def main():
 
 
 if __name__ == "__main__":
+<<<<<<< HEAD
+    main()
+=======
     main()
     
+>>>>>>> 2948341153bd3ce378f2958e22e086af58eb6afb
