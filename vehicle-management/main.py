@@ -113,7 +113,7 @@ def search_vehicle(vehicles):
     display_vehicles(result)
 
 
-# ================= SORT (FIX CHUẨN) =================
+# ================= SORT =================
 def sort_vehicles(vehicles):
     if not vehicles:
         print("No data!")
@@ -133,7 +133,6 @@ def sort_vehicles(vehicles):
         print("Invalid choice!")
         return
 
-    # 👉 IN RA SAU KHI SORT (QUAN TRỌNG)
     display_vehicles(vehicles)
 
 

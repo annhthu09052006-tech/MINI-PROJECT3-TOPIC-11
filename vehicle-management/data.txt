@@ -1,3 +1,4 @@
-123|danwg|2.0
-1|Toyota|500.0
-2|Honda|300.0
+10|honda|car|300.0|rented
+11|toyota|car|400.0|available
+2|mazda3|car|400.0|avalable
+1|lexus|car|600.0|rented

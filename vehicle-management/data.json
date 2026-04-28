@@ -1,17 +1,30 @@
 [
     {
-        "id": "123",
-        "name": "danwg",
-        "price": 2.0
+        "id": "10",
+        "name": "honda",
+        "type": "car",
+        "price": 300.0,
+        "status": "rented"
     },
     {
-        "id": "1",
-        "name": "Toyota",
-        "price": 500.0
+        "id": "11",
+        "name": "toyota",
+        "type": "car",
+        "price": 400.0,
+        "status": "available"
     },
     {
         "id": "2",
-        "name": "Honda",
-        "price": 300.0
+        "name": "mazda3",
+        "type": "car",
+        "price": 400.0,
+        "status": "avalable"
+    },
+    {
+        "id": "1",
+        "name": "lexus",
+        "type": "car",
+        "price": 600.0,
+        "status": "rented"
     }
 ]
