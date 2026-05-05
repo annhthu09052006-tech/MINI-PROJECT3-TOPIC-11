@@ -1,0 +1,2 @@
+8|honda|car|300.0|rented
+9|toyota|car|400.0|rented
