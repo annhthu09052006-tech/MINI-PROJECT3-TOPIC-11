@@ -158,11 +158,11 @@ pyhon main.py
 | 4 | Search | 1.0 |
 | 5 | Sort | 1.0 |
 | 6 | Statistics | 1.0 |
-| 7 | TXT File | 1.0 |
+| 7 | TXT File | 0 |
 | 8 | Advanced Search | 1.0 |
 | 9 | JSON Export | 1.0 |
 | 10 | Git | 1.0 |
-| | TOTAL | 10.0 |
+| | TOTAL | 9.0 |
 
 
 ## 13. Student Information
